@@ -1,27 +1,24 @@
 public class SavingsAccount extends Account implements InterestBearing {
-    private static final double INTEREST_RATE = 0.0005; // 0.05%
+    private final double interestRate = 0.0005; // 0.05% monthly
 
-    public SavingsAccount(String accountNumber, String branch) {
-        super(accountNumber, branch);
-    }
-
-    @Override
-    public void deposit(double amount) {
-        balance += amount;
-    }
-
-    @Override
-    public void withdraw(double amount) {
-        throw new UnsupportedOperationException("Withdrawals not allowed from Savings Account");
+    public SavingsAccount(String accNo, double balance) {
+        super(accNo, balance);
     }
 
     @Override
     public void calculateInterest() {
-        balance += balance * INTEREST_RATE;
+        addInterest();
     }
 
     @Override
-    public void payInterest() {
-        calculateInterest();
+    public void addInterest() {
+        double interest = getBalance() * interestRate;
+        deposit(interest);
+        System.out.println("Interest added to SavingsAccount: " + interest);
+    }
+
+    @Override
+    public void withdraw(double amount) {
+        System.out.println("Withdrawals are not allowed from SavingsAccount.");
     }
 }

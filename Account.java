@@ -1,21 +1,38 @@
 public abstract class Account {
-    protected String accountNumber;
-    protected double balance;
-    protected String branch;
+    private String accNo;
+    private double balance;
 
-    public Account(String accountNumber, String branch) {
-        this.accountNumber = accountNumber;
-        this.branch = branch;
-        this.balance = 0.0;
+    public Account(String accNo, double balance) {
+        this.accNo = accNo;
+        this.balance = balance;
     }
 
-    // Abstract methods
-    public abstract void deposit(double amount);
-    public abstract void withdraw(double amount);
-    public abstract void calculateInterest();
+    public String getAccNo() {
+        return accNo;
+    }
 
-    // Getters
-    public String getAccountNumber() { return accountNumber; }
-    public double getBalance() { return balance; }
-    public String getBranch() { return branch; }
+    public double getBalance() {
+        return balance;
+    }
+
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println(amount + " deposited. New balance: " + balance);
+        } else {
+            System.out.println("Deposit must be positive.");
+        }
+    }
+
+    public void withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+            System.out.println(amount + " withdrawn. New balance: " + balance);
+        } else {
+            System.out.println("Invalid withdrawal amount.");
+        }
+    }
+
+
+    public abstract void calculateInterest();
 }

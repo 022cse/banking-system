@@ -1,47 +1,36 @@
 import java.util.ArrayList;
-import java.util.List;
 
 public class Customer {
-    private String customerID;
-    private String firstname;
+    private String id;
+    private String firstName;
     private String surname;
     private String address;
-    private String contactNumber;
-    private List<Account> accounts;
+    private ArrayList<Account> accounts;
 
-    public Customer(String customerID, String firstname, String surname, String address, String contactNumber) {
-        this.customerID = customerID;
-        this.firstname = firstname;
+    public Customer(String id, String firstName, String surname, String address) {
+        this.id = id;
+        this.firstName = firstName;
         this.surname = surname;
         this.address = address;
-        this.contactNumber = contactNumber;
-        this.accounts = new ArrayList<>();
+        accounts = new ArrayList<>();
     }
 
-    public void openAccount(Account account) {
+    public String getId() { return id; }
+    public String getFirstName() { return firstName; }
+    public String getSurname() { return surname; }
+    public String getAddress() { return address; }
+
+    public void addAccount(Account account) {
         accounts.add(account);
+        System.out.println("Account " + account.getAccNo() + " added for " + firstName);
     }
 
-    public void deposit(Account account, double amount) {
-        account.deposit(amount);
-    }
-
-    public void withdraw(Account account, double amount) {
-        account.withdraw(amount);
-    }
-
-    public void applyInterestToAccounts() {
+    public void showAccounts() {
+        System.out.println("Accounts for " + firstName + " " + surname + ":");
         for (Account acc : accounts) {
-            if (acc instanceof InterestBearing) {
-                ((InterestBearing) acc).payInterest();
-            }
+            System.out.println("- " + acc.getAccNo() + " Balance: " + acc.getBalance());
         }
     }
 
-    public List<Account> getAccounts() {
-        return accounts;
-    }
-
-    public String getCustomerID() { return customerID; }
-    public String getFullName() { return firstname + " " + surname; }
+    public ArrayList<Account> getAccounts() { return accounts; }
 }

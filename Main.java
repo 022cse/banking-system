@@ -1,44 +1,40 @@
 public class Main {
     public static void main(String[] args) {
-        // Create a customer
-        Customer c1 = new Customer("C001", "Lerang", "Gaofano", "Gaborone", "71234567");
+        // Create customers
+        Customer c1 = new Customer("C001", "Lerang", "Gaofano", "Gaborone");
+        Customer c2 = new Customer("C002", "Mpho", "Dube", "Francistown");
 
-        // Open accounts
-        Account savings = new SavingsAccount("A001", "Main Branch");
-        Account investment = new InvestmentAccount("A002", "Main Branch");
-        Account cheque = new ChequeAccount("A003", "Main Branch", "ABC Ltd", "Gaborone");
+        // Open accounts for Lerang
+        SavingsAccount sAcc = new SavingsAccount("001", 5000);
+        InvestmentAccount iAcc = new InvestmentAccount("002", 10000);
+        c1.addAccount(sAcc);
+        c1.addAccount(iAcc);
 
-        c1.openAccount(savings);
-        c1.openAccount(investment);
-        c1.openAccount(cheque);
+        // Open account for Mpho (with employer info)
+        ChequeAccount chAcc = new ChequeAccount("003", 2000, "ABC Ltd", "Gaborone CBD");
+        c2.addAccount(chAcc);
 
-        // Deposits
-        c1.deposit(savings, 5000);
-        c1.deposit(investment, 10000);
-        c1.deposit(cheque, 3000);
+        // Show initial balances
+        c1.showAccounts();
+        c2.showAccounts();
 
-        // Apply interest
-        c1.applyInterestToAccounts();
+        // Deposit money
+        sAcc.deposit(1000);
+        chAcc.deposit(500);
 
-        // Print balances
-        for (Account acc : c1.getAccounts()) {
-            System.out.println("Account: " + acc.getAccountNumber() + " | Balance: " + acc.getBalance());
-        }
+        // Withdraw money
+        iAcc.withdraw(2000);
+        sAcc.withdraw(100); // should not allow
+        chAcc.withdraw(2500); // should show invalid
 
-        // Withdrawals
-        c1.withdraw(investment, 2000);
-        c1.withdraw(cheque, 1000);
+        // Pay interest
+        sAcc.calculateInterest();
+        iAcc.calculateInterest();
+        chAcc.calculateInterest();
 
-        System.out.println("After withdrawals:");
-        for (Account acc : c1.getAccounts()) {
-            System.out.println("Account: " + acc.getAccountNumber() + " | Balance: " + acc.getBalance());
-        }
-
-        // Try invalid withdrawal from Savings
-        try {
-            c1.withdraw(savings, 1000);
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
+        // Final balances
+        System.out.println("\nFinal balances:");
+        c1.showAccounts();
+        c2.showAccounts();
     }
 }

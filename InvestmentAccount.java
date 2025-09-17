@@ -1,33 +1,22 @@
 public class InvestmentAccount extends Account implements InterestBearing {
-    private static final double INTEREST_RATE = 0.05; // 5%
+    private final double interestRate = 0.05; // 5% monthly
 
-    public InvestmentAccount(String accountNumber, String branch) {
-        super(accountNumber, branch);
-    }
-
-    @Override
-    public void deposit(double amount) {
-        if(balance == 0 && amount < 500) {
-            throw new IllegalArgumentException("Minimum opening deposit is BWP500");
+    public InvestmentAccount(String accNo, double initialDeposit) {
+        super(accNo, initialDeposit);
+        if (initialDeposit < 500) {
+            throw new IllegalArgumentException("InvestmentAccount requires minimum BWP500 deposit.");
         }
-        balance += amount;
-    }
-
-    @Override
-    public void withdraw(double amount) {
-        if(amount > balance) {
-            throw new IllegalArgumentException("Insufficient funds in Investment Account");
-        }
-        balance -= amount;
     }
 
     @Override
     public void calculateInterest() {
-        balance += balance * INTEREST_RATE;
+        addInterest();
     }
 
     @Override
-    public void payInterest() {
-        calculateInterest();
+    public void addInterest() {
+        double interest = getBalance() * interestRate;
+        deposit(interest);
+        System.out.println("Interest added to InvestmentAccount: " + interest);
     }
 }

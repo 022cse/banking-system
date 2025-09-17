@@ -1,3 +1,3 @@
 public interface InterestBearing {
-    void payInterest();
+    void addInterest();
 }
