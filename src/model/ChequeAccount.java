@@ -1,3 +1,4 @@
+package model;
 public class ChequeAccount extends Account {
     private String employerName;
     private String employerAddress;

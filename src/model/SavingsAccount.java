@@ -1,3 +1,4 @@
+package model;
 public class SavingsAccount extends Account implements InterestBearing {
     private final double interestRate = 0.0005; // 0.05% monthly
 
