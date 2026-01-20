@@ -1,9 +1,16 @@
 package model;
+
 public class SavingsAccount extends Account implements InterestBearing {
-    private final double interestRate = 0.0005; // 0.05% monthly
+
+    private final double interestRate = 0.0005;
 
     public SavingsAccount(String accNo, double balance) {
         super(accNo, balance);
+    }
+
+    @Override
+    public void withdraw(double amount) {
+        System.out.println("Withdrawals not allowed for Savings Account");
     }
 
     @Override
@@ -13,13 +20,6 @@ public class SavingsAccount extends Account implements InterestBearing {
 
     @Override
     public void addInterest() {
-        double interest = getBalance() * interestRate;
-        deposit(interest);
-        System.out.println("Interest added to SavingsAccount: " + interest);
-    }
-
-    @Override
-    public void withdraw(double amount) {
-        System.out.println("Withdrawals are not allowed from SavingsAccount.");
+        balance += balance * interestRate;
     }
 }

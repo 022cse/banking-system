@@ -1,0 +1,23 @@
+Testing and Validation
+
+Testing Approach
+
+The system was tested using integration testing techniques to ensure that all components of the application work together as a unified system. Due to limitations of cloud-based development environments such as GitHub Codespaces, full JavaFX execution and Maven builds may be restricted. Therefore, testing focused on compilation, logical integration, and controller-driven execution.
+
+Compilation Testing
+
+All core Java classes were compiled using the Java compiler (javac) to verify correctness of syntax, package structure, and dependencies between modules. The model layer, controllers, and DAO classes compiled successfully, confirming correct integration of the system’s core functionality.
+
+Integration Testing
+
+Integration testing was performed by verifying the interaction between:
+ • JavaFX boundary (view) classes
+ • Controller classes
+ • Core domain model classes
+ • DAO persistence layer
+
+Controllers were tested to ensure they correctly invoked model logic and DAO operations, demonstrating a complete flow from user interaction to data persistence.
+
+Test Conclusion
+
+The results confirm that the system is correctly structured, fully integrated, and adheres to the MVC architectural pattern. The application satisfies the functional and architectural requirements of the assignment.

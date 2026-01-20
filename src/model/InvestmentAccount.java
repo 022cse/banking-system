@@ -1,11 +1,13 @@
 package model;
-public class InvestmentAccount extends Account implements InterestBearing {
-    private final double interestRate = 0.05; // 5% monthly
 
-    public InvestmentAccount(String accNo, double initialDeposit) {
-        super(accNo, initialDeposit);
-        if (initialDeposit < 500) {
-            throw new IllegalArgumentException("InvestmentAccount requires minimum BWP500 deposit.");
+public class InvestmentAccount extends Account implements InterestBearing {
+
+    private final double interestRate = 0.05;
+
+    public InvestmentAccount(String accNo, double balance) {
+        super(accNo, balance);
+        if (balance < 500) {
+            throw new IllegalArgumentException("Minimum deposit is BWP500");
         }
     }
 
@@ -16,8 +18,6 @@ public class InvestmentAccount extends Account implements InterestBearing {
 
     @Override
     public void addInterest() {
-        double interest = getBalance() * interestRate;
-        deposit(interest);
-        System.out.println("Interest added to InvestmentAccount: " + interest);
+        balance += balance * interestRate;
     }
 }

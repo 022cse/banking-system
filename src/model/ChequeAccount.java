@@ -1,5 +1,7 @@
 package model;
+
 public class ChequeAccount extends Account {
+
     private String employerName;
     private String employerAddress;
 
@@ -11,14 +13,6 @@ public class ChequeAccount extends Account {
 
     @Override
     public void calculateInterest() {
-        System.out.println("ChequeAccount does not earn interest.");
-    }
-
-    public String getEmployerName() {
-        return employerName;
-    }
-
-    public String getEmployerAddress() {
-        return employerAddress;
+        System.out.println("Cheque account earns no interest");
     }
 }
